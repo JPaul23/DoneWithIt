@@ -1,9 +1,9 @@
 import React from 'react';
-import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { Image, ImageBackground, StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
 
 import colors from '../config/colors';
 
-export default function WelcomeScreen() {
+export default function WelcomeScreen({ navigation }) {
     return (
         <ImageBackground
             source={require('../assets/background.jpg')}
@@ -13,7 +13,15 @@ export default function WelcomeScreen() {
                 <Image style={styles.logo} source={require('../assets/logo-red.png')} />
                 <Text>Sell What You Don't Need!</Text>
             </View>
-            <View style={styles.loginButton}></View>
+            <TouchableNativeFeedback onPress={() => navigation.navigate('Image', { name: 'Chair' })}>
+
+                <View style={styles.loginButton}>
+                    <Text>
+
+                        View Image
+                    </Text>
+                </View>
+            </TouchableNativeFeedback>
             <View style={styles.registerButton}></View>
         </ImageBackground>
     )
