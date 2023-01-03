@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Image, SafeAreaView, TouchableNativeFeedback } from 'react-native';
 
 export default function App() {
   console.log('App executed!');
@@ -10,15 +10,20 @@ export default function App() {
       <Text onPress={handlePress}>
         Hello React Native!
       </Text>
-      <Image
-        fadeDuration={1000}
-        source={{
-          width: 200,
-          height: 300,
-          uri: "https://picsum.photos/200/300"
-        }} />
+      <TouchableNativeFeedback onPress={() => console.log('Image tapped!')} >
+        <Image
+          fadeDuration={1000}
+          source={{
+            width: 200,
+            height: 300,
+            uri: "https://picsum.photos/200/300"
+          }} />
+      </TouchableNativeFeedback>
+      <TouchableNativeFeedback>
+        <View style={{ width: 200, height: 70, backgroundColor: 'blue' }}></View>
+      </TouchableNativeFeedback>
       <StatusBar style="auto" />
-    </SafeAreaView>
+    </SafeAreaView >
   );
 }
 
