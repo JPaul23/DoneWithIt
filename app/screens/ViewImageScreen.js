@@ -1,20 +1,10 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, Button } from 'react-native';
-import { logger } from "react-native-logs";
+import { View, Text, Image, StyleSheet, Button, ImageBackground } from 'react-native';
 
 import colors from '../config/colors';
+import { log } from '../config/logging';
 
 const ViewImageScreen = ({ navigation }) => {
-    const log = logger.createLogger({
-        transportOptions: {
-            colors: {
-                info: "blueBright",
-                warn: "yellowBright",
-                error: "redBright",
-                debug: "white",
-            },
-        },
-    });
 
     log.info("The Image screen");
     const handleNavigate = () => {
@@ -30,33 +20,31 @@ const ViewImageScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.closeIcon}>
-                <Button title='Go Back' onPress={handleBack} />
-            </View>
 
-            <View style={styles.deleteIcon}>
-                <Button title='Go Home' onPress={handleNavigate} />
-            </View>
+            <ImageBackground resizeMode='contain' style={styles.image} source={require('../assets/chair.jpg')} >
+                <View style={styles.closeIcon}>
+                    <Button title='Go Back' onPress={handleBack} />
+                </View>
+
+                <View style={styles.deleteIcon}>
+                    <Button title='Go Home' onPress={handleNavigate} />
+                </View>
 
 
-            <Image
-                style={styles.image}
-                source={require('../assets/chair.jpg')}
-                resizeMode='contain'
-            />
-        </View>
+            </ImageBackground>
+        </View >
     )
 }
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: colors.black,
+        backgroundColor: colors.white,
         flex: 1,
-        top: 40,
+        top: 1,
     },
     closeIcon: {
         backgroundColor: colors.primary,
         position: 'absolute',
-        top: -5,
+        top: 2,
         left: 30
     },
     deleteIcon: {
@@ -65,10 +53,9 @@ const styles = StyleSheet.create({
         top: 2,
         right: 30
     },
-
     image: {
-        width: '100%',
-        height: '100%',
+        flex: 1,
+        justifyContent: "center",
     }
 });
 

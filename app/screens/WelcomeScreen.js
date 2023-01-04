@@ -1,9 +1,15 @@
 import React from 'react';
-import { Image, ImageBackground, StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
+import { Image, ImageBackground, StyleSheet, Text, View, Button } from 'react-native';
 
 import colors from '../config/colors';
+import { log } from '../config/logging';
 
 export default function WelcomeScreen({ navigation }) {
+    const handleNavigate = () => {
+        navigation.navigate('Image', { name: 'Chair' })
+        log.info("Navigated on Image with Chair");
+    }
+
     return (
         <ImageBackground
             source={require('../assets/background.jpg')}
@@ -13,15 +19,11 @@ export default function WelcomeScreen({ navigation }) {
                 <Image style={styles.logo} source={require('../assets/logo-red.png')} />
                 <Text>Sell What You Don't Need!</Text>
             </View>
-            <TouchableNativeFeedback onPress={() => navigation.navigate('Image', { name: 'Chair' })}>
 
-                <View style={styles.loginButton}>
-                    <Text>
-
-                        View Image
-                    </Text>
-                </View>
-            </TouchableNativeFeedback>
+            <View style={styles.loginButton}>
+                <Button title='View Image' onPress={handleNavigate}
+                />
+            </View>
             <View style={styles.registerButton}></View>
         </ImageBackground>
     )
