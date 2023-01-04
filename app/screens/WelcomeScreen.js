@@ -1,13 +1,21 @@
 import React from 'react';
 import { Image, ImageBackground, StyleSheet, Text, View, Button } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import colors from '../config/colors';
 import { log } from '../config/logging';
+import { DetailsScreen } from './SettingStackScreen';
+import ViewImageScreen from './ViewImageScreen';
 
+const HomeStack = createNativeStackNavigator();
 export default function WelcomeScreen({ navigation }) {
     const handleNavigate = () => {
         navigation.navigate('Image', { name: 'Chair' })
         log.info("Navigated on Image with Chair");
+    }
+    const handleNavigateDetails = () => {
+        navigation.navigate('Details')
+        log.info("Navigated on Details screen");
     }
 
     return (
@@ -24,9 +32,24 @@ export default function WelcomeScreen({ navigation }) {
                 <Button title='View Image' onPress={handleNavigate}
                 />
             </View>
-            <View style={styles.registerButton}></View>
+            <View style={styles.registerButton}>
+                <Button title='View Details' onPress={handleNavigateDetails}
+                />
+            </View>
         </ImageBackground>
     )
+}
+
+export const HomeStackScreen = () => {
+    return (
+        <HomeStack.Navigator screenOptions={{
+            headerShown: false
+        }}>
+            <HomeStack.Screen name="Welcome" component={WelcomeScreen} />
+            <HomeStack.Screen name="Details" component={DetailsScreen} />
+            <HomeStack.Screen name="Image" component={ViewImageScreen} />
+        </HomeStack.Navigator>
+    );
 }
 
 const styles = StyleSheet.create({
@@ -54,4 +77,4 @@ const styles = StyleSheet.create({
         height: 70,
         backgroundColor: colors.secondary,
     }
-})
+});

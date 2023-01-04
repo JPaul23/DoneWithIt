@@ -4,12 +4,12 @@ import { View, Text, Image, StyleSheet, Button, ImageBackground } from 'react-na
 import colors from '../config/colors';
 import { log } from '../config/logging';
 
-const ViewImageScreen = ({ navigation }) => {
+export const ViewImageScreen = ({ navigation }) => {
 
     log.info("The Image screen");
     const handleNavigate = () => {
-        navigation.navigate('Home')
-        log.info("Navigated Home");
+        navigation.navigate('Welcome')
+        log.info("Navigated to Welcome Screen");
     }
 
     const handleBack = () => {
