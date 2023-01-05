@@ -4,9 +4,10 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 
 export const DetailsScreen = () => {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Details!</Text>
+        <View className=" flex-1 items-center justify-center bg-white">
+            <Text className="text-2xl text-black font-bold">Details</Text>
         </View>
+
     );
 }
 export const SettingsScreen = ({ navigation }) => {
